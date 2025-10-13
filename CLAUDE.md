@@ -21,7 +21,11 @@ This is a generative art React application that gradually fills the screen with 
 The circle generation follows a specific geometric pattern:
 
 1. **Step 0**: Place circles at all four corners of the viewport
-2. **Subsequent steps**: For each existing circle, find intersections between that circle and the canvas borders, then place new circles centered at those intersection points
+2. **Subsequent steps**: Find all intersection points between:
+   - Existing circles and canvas borders
+   - Existing circles and other circles
+
+   Place new circles centered at each intersection point, but only if no circle already exists at that position (avoid duplicates)
 3. **Termination**: Stop after 10 steps or when the screen is filled
 
 ### Animation Behavior
@@ -60,5 +64,10 @@ npm run preview
 - Use SVG for circle rendering (not HTML Canvas)
 - Calculate intersection points geometrically between circles (20px radius) and viewport boundaries
 - Manage circle positions in state, adding new positions at each step
+- **Floating Point Precision**: Be extremely careful with floating point arithmetic throughout:
+  - Circle-circle and circle-border intersection calculations may produce slight precision errors
+  - Use a tolerance threshold (e.g., 0.1 pixels) when comparing positions for equality
+  - Consider rounding coordinates to a reasonable precision (e.g., 2 decimal places) to avoid accumulating errors
+- **Deduplication**: Before adding a new circle, check if a circle already exists at that position using distance calculation with tolerance threshold
 - Use `setTimeout` or `setInterval` for 3-second delays between steps
 - Ensure newer circles have lower z-index or render order so they appear beneath existing ones
