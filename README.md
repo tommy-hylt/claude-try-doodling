@@ -20,7 +20,22 @@ This project creates a generative art experience where circles appear gradually 
 
 - **PROJECT_OVERVIEW.md** - Detailed project goals and requirements
 - **DESIGN_VISION.md** - Visual design and behavior specifications
+- **CLAUDE.md** - Technical guidance for Claude Code
 
 ## Development
 
-[Commands will be added once the project is set up]
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+The app will be available at http://localhost:5173/

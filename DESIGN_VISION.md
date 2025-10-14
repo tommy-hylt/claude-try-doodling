@@ -2,6 +2,7 @@
 
 ## Visual Style
 The page should be relaxing. Use blue and white in different saturations.
+Circles have sky blue stroke with white fill.
 
 ## UI/UX Concept
 The page does not contain any button nor text. Simply on page load, you start drawing.
@@ -22,7 +23,7 @@ Until the whole page is filled with circles.
 1. The application starts with a blank canvas
 2. Every 3 seconds, new circles appears
 3. Newer circles should be drawn beneath older circles
-4. Ends until the whole screen is filled or 10 steps
+4. Continues until the whole screen is filled (no more valid intersections)
 
 ### Animation Characteristics
 - Smooth animation for circle creation, animte the opacity
