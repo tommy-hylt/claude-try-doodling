@@ -4,6 +4,7 @@ import {
   type Position,
   circleExists,
   isPointCovered,
+  isWithinBounds,
   getCircleBorderIntersections,
   getCircleCircleIntersections,
 } from './utils/intersections';
@@ -53,7 +54,7 @@ const Canvas: React.FC = () => {
       const borderIntersections = getCircleBorderIntersections(circle, dimensions);
       console.log(`Circle ${idx} at (${circle.x}, ${circle.y}) -> ${borderIntersections.length} border intersections`, borderIntersections);
       borderIntersections.forEach((pos) => {
-        if (!circleExists(pos, circles) && !circleExists(pos, candidateCircles) && !isPointCovered(pos, circles)) {
+        if (isWithinBounds(pos, dimensions) && !circleExists(pos, circles) && !circleExists(pos, candidateCircles) && !isPointCovered(pos, circles)) {
           candidateCircles.push(pos);
         }
       });
@@ -70,7 +71,7 @@ const Canvas: React.FC = () => {
           console.log(`Circle ${i} & ${j} -> ${circleIntersections.length} intersections`, circleIntersections);
         }
         circleIntersections.forEach((pos) => {
-          if (!circleExists(pos, circles) && !circleExists(pos, candidateCircles) && !isPointCovered(pos, circles)) {
+          if (isWithinBounds(pos, dimensions) && !circleExists(pos, circles) && !circleExists(pos, candidateCircles) && !isPointCovered(pos, circles)) {
             candidateCircles.push(pos);
           }
         });
@@ -81,7 +82,7 @@ const Canvas: React.FC = () => {
 
     // Pick one circle pseudo-randomly based on number of candidates
     if (candidateCircles.length > 0) {
-      const selectedIndex = step % candidateCircles.length;
+      const selectedIndex = (step * 2654435761) % candidateCircles.length;
       const selectedCircle = candidateCircles[selectedIndex];
       console.log(`Selected circle ${selectedIndex}:`, selectedCircle);
       setCircles((prev) => [...prev, selectedCircle]);

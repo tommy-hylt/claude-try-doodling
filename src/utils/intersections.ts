@@ -51,6 +51,21 @@ export const isPointCovered = (
 };
 
 /**
+ * Check if a point is within canvas bounds
+ */
+export const isWithinBounds = (
+  pos: Position,
+  dimensions: Dimensions
+): boolean => {
+  return (
+    pos.x >= 0 &&
+    pos.x <= dimensions.width &&
+    pos.y >= 0 &&
+    pos.y <= dimensions.height
+  );
+};
+
+/**
  * Calculate intersections between a circle and canvas borders
  * Returns points where the circle's circumference touches the border
  */
