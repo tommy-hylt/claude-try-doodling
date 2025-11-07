@@ -5,7 +5,6 @@ import {
   type Position,
   type Dimensions,
   RADIUS,
-  TOLERANCE,
   isPointCovered,
   getCircleBorderIntersections,
   getCircleCircleIntersections,
